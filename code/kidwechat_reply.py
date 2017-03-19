@@ -36,5 +36,12 @@ def reply(msg):
      
     else:
         Tuling(api_key=KEY).do_reply(msg)
+
+@bot.register([Group],TEXT)
+def reply(msg):
+    print(isinstance(msg.sender, Group))
+    print(msg.is_at)
+    if isinstance(msg.sender, Group) and msg.is_at:
+        Tuling(api_key=KEY).do_reply(msg)
   
 bot.start(block=True)
