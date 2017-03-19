@@ -12,27 +12,15 @@ HELP = """
     输入"查找xx"，则查找公众号并返回二维码
     输入"添加xx"，则向微信号'xx'发送好友请求
     输入其他，则开启自动聊天模式"""
-
+NoFound = """
+    {}还不是我的好友呢？
+    推荐图图给他;或发送"添加xx",将他添加为图图的好友（仅支持微信号哦~）"""
+   
 def reply_text(msg):  
     request_head = msg.text[:2] 
     request_body = msg.text[2:]
     if request_head == '寻找' and request_body:
-        try:
-            friend_name = request_body
-            print(friend_name)
-            search_friend = ensure_one(bot.friends().search(friend_name))
-            users = [search_friend, msg.sender]
-            print(users)
-            group = bot.create_group(users, topic='小白屋')
-            reply = '{}已经找到，去"小白屋"里聊天吧。'.format(friend_name)
-            print(reply)
-            group.add_members(msg.sender, use_invitation=True)
-            group.add_members(search_friend, use_invitation=True)
-            group.send('Bingo!')
-        except:
-            reply = """
-                {}还不是我的好友呢？                推荐图图给他;或发送"添加xx",将他添加为图图的好友（仅支持微信号哦~）""".format(friend_name)
-
+        reply = request_friend(msg)
         msg.reply(reply)      
         
     elif request_head == '查找' and request_body:
@@ -53,3 +41,23 @@ def reply_text(msg):
         
     else:
         Tuling(api_key=KEY).do_reply(msg)
+        
+def request_friend(msg):
+    friend_name = msg.text[2:]
+    search_friend = bot.friends().search(friend_name)
+    if search_friend:
+        try:
+            search_friend = ensure_one(bot.friends().search(friend_name))
+            users = [search_friend, msg.sender]
+            group = bot.create_group(users, topic='小白屋')
+            reply = '{}已经找到，去"小白屋"里聊天吧。'.format(friend_name)
+            group.add_members(msg.sender, use_invitation=True)
+            group.add_members(search_friend, use_invitation=True)
+            group.send('Bingo!')
+        except:
+            reply = '找到多个{}，重新寻找微信名或昵称试试吧。'.format(friend_name)
+            
+    else:
+        reply = NoFound.format(friend_name)
+        
+    return reply
