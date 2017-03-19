@@ -1,6 +1,7 @@
 #! python3
 # -*- coding:utf-8 -*-
 from wxpy import *
+from autoreply import autoreply
 
 bot = Bot(cache_path=True)
 help_info = """
@@ -33,7 +34,7 @@ def reply(msg):
             return help_info
         
         else:
-            return '我听不懂你说什么呢？输入"帮助"试一下。'
+            return autoreply(msg.text)
     else:
         pass
         
