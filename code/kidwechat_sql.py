@@ -16,7 +16,7 @@ class MpsData(db.Model):
     创建表格，如表格已创建则读取表格为 MpsData
 
     第一列 mp：公众号名称
-    第二列 user：添加数据的用户（写入 str(bot.self)），以防不同用户间产生冲突
+    第二列 user：添加发送信息的用户（写入 str(msg.receiver)），以防不同用户间产生冲突
     第三列 img：照片文件名
     """
     __tablename__ = 'weather_data'
