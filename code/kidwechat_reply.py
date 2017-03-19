@@ -36,10 +36,15 @@ def reply(msg):
      
     else:
         Tuling(api_key=KEY).do_reply(msg)
-
+        
 @bot.register([Group],TEXT)
 def reply(msg):
     if isinstance(msg.sender, Group) and msg.is_at:
         Tuling(api_key=KEY).do_reply(msg)
-  
+        
+@bot.register(msg_types=FRIENDS)
+def auto_accept_friends(msg):
+    new_friend = bot.accept_friend(msg.card)
+    new_friend.send('我是图图，输入"帮助"了解我吧。')
+
 bot.start(block=True)
