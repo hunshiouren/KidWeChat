@@ -19,7 +19,7 @@ def reply(msg):
 @bot.register(msg_types=FRIENDS)
 def auto_accept_friends(msg):
     new_friend = bot.accept_friend(msg.card)
-    reply = '我是图图，输入"帮助"了解我吧。'
+    reply = '我是TuTu，输入"帮助"了解我吧。'
     new_friend.send(reply)
 
 bot.start(block=True)

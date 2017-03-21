@@ -6,15 +6,13 @@ from wxpy import *
 bot = Bot(cache_path=True)
 
 KEY = '042c8822f369426aa4ff5396880c84ad'
-HELP = """
-    输入"帮助"，获取帮助文档
-    输入"寻找xx"，则寻找好友并创建群聊
-    输入"查找xx"，则查找公众号并返回二维码
-    输入"添加xx"，则向微信号'xx'发送好友请求
-    输入其他，则开启自动聊天模式"""
-NoFound = """
-    {}还不是我的好友呢？
-    推荐图图给他;或发送"添加xx",将他添加为图图的好友（仅支持微信号哦~）"""
+HELP = """输入"帮助"，获取帮助文档
+输入"寻找xx"，寻找好友并创建群聊
+输入"查找xx"，查找公众号并返回二维码
+输入"添加xx"，向微信号'xx'发送好友请求
+输入其他，开启自动聊天模式"""
+NoFound = """{}还不是我的好友呢？
+推荐TuTu给他;或发送"添加xx",将他添加为TuTu的好友（仅支持微信号哦~）"""
    
 def reply_text(msg):  
     request_head = msg.text[:2] 
@@ -37,7 +35,7 @@ def reply_text(msg):
         msg.reply(HELP)
      
     elif '你的朋友验证请求' in msg.text:
-        msg.reply('我是图图，输入"帮助"了解我吧。')
+        msg.reply('我是TuTu，输入"帮助"了解我吧。')
         
     else:
         Tuling(api_key=KEY).do_reply(msg)
@@ -51,9 +49,10 @@ def request_friend(msg):
             users = [search_friend, msg.sender]
             group = bot.create_group(users, topic='小白屋')
             reply = '{}已经找到，去"小白屋"里聊天吧。'.format(friend_name)
+            group.remove_members(search_friend)
+            group.remove_members(msg.sender)
             group.add_members(msg.sender, use_invitation=True)
             group.add_members(search_friend, use_invitation=True)
-            group.send('Bingo!')
         except:
             reply = '找到多个{}，重新寻找微信名或昵称试试吧。'.format(friend_name)
             
