@@ -1,6 +1,7 @@
 #! python3
 # -*- coding:utf-8 -*-
 from wxpy import *
+from kidwechat_add_mp import friend_query_mp
 
 
 bot = Bot(cache_path=True)
@@ -22,7 +23,8 @@ def reply_text(msg):
         msg.reply(reply)      
         
     elif request_head == '查找' and request_body:
-        msg.reply('查找公众号功能暂未上线，请耐心等待哦。')
+        return friend_query_mp(msg)
+        #msg.reply('查找公众号功能暂未上线，请耐心等待哦。')
         
     elif request_head == '添加' and request_body:
         user_id = msg.text[2:]

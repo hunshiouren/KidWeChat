@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 from wxpy import *
 from kidwechat_reply_text import reply_text
+from kidwechat_add_mp import friend_send_mp
 
 
 bot = Bot(cache_path=True)
@@ -21,5 +22,10 @@ def auto_accept_friends(msg):
     new_friend = bot.accept_friend(msg.card)
     reply = '我是TuTu，输入"帮助"了解我吧。'
     new_friend.send(reply)
+
+@bot.register(msg_types = CARD)
+def archive_mp(msg):
+    return friend_send_mp(msg)
+
 
 bot.start(block=True)

@@ -19,7 +19,7 @@ dic_mp_qrcode = {} #存储公众号名称和二维码的字典
 mozart = '12_Mozart.jpg'  #暂时以莫扎特代替 24小时审核公众号图
 
 #第一步: 用户发来公众号卡片，将用户名key：sender和value：公众号名称存储为字典
-@bot.register([Friend], msg_types = CARD)
+#@bot.register([Friend], msg_types = CARD)
 def friend_send_mp(msg):
     global dic_mp_name, dic_mp_qrcode
     #写入两个字典中
@@ -42,7 +42,7 @@ def friend_send_mp(msg):
 
 
 #第二步：用户查找公众号名称，返回图片
-@bot.register([Friend], msg_types = TEXT)
+#@bot.register([Friend], msg_types = TEXT)
 def friend_query_mp(msg):
     request_head = msg.text[:2]
     request_body = msg.text[2:]
@@ -54,7 +54,7 @@ def friend_query_mp(msg):
         tuling.do_reply(msg)
 
 #群聊，调戏机器人
-@bot.register([Group],TEXT)
+#@bot.register([Group],TEXT)
 def reply(msg):
     if isinstance(msg.chat, Group) and not msg.is_at:
         return
