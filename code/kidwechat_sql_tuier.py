@@ -42,7 +42,7 @@ class DataOperating:
     change_img：修改二维码图片名称
     """
     def add_data(mp, user):      #鸡腿儿：是否需要img？ Ollie: 不需要，改成图片文件名
-        add_mp = MpsData(mp, user, '12 Mozart.jpg') # 添加 莫扎特图片
+        add_mp = MpsData(mp, user, '12_Mozart.jpg') # 添加 莫扎特图片
         db.session.add(add_mp)
         db.session.commit()
 
