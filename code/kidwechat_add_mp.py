@@ -30,7 +30,7 @@ def friend_send_mp(msg):
     msg.reply_image(mozart)
     msg.reply ('%s 发送了名片 %s' % (msg.chat.name, dic_mp_name[msg.chat.name]))
     #此时，需将mp，user,img写入数据库
-    add_data(dic_mp_name[msg.chat.name], msg.chat.name)
+    DataOperating.add_data(dic_mp_name[msg.chat.name], msg.chat.name)
 
 
 #第二步：用户查找公众号名称，返回图片
@@ -40,7 +40,8 @@ def friend_query_mp(msg):
     request_body = msg.text[2:]
     if request_head == '查找' and request_body:
         #查找数据库，如果已添加此公众号，则返回图片(默认返回莫扎特，手动添加二维码后返回二维码）)
-        search_img(request_body, msg.chat.name)
+        img = DataOperating.search_img(request_body, msg.chat.name)
+        msg.sender.send_image(img)
     else:
         tuling.do_reply(msg)
 
@@ -51,3 +52,5 @@ def reply(msg):
         return
     else:
         tuling(api_key=KEY).do_reply(msg)
+
+bot.start()
