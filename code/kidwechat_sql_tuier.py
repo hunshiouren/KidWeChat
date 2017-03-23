@@ -15,7 +15,7 @@ class MpsData(db.Model):
     """
     创建表格，如表格已创建则读取表格为 MpsData
     第一列 mp：公众号名称
-    第二列 user：添加发送信息的用户（写入 str(msg.chat），以防不同用户间产生冲突
+    第二列 user：添加发送信息的用户（写入 str(msg.chat.name），以防不同用户间产生冲突
     第三列 img：照片文件名
     """
     __tablename__ = 'weather_data'
@@ -42,15 +42,15 @@ class DataOperating:
     change_img：修改二维码图片名称
     """
     def add_data(mp, user):      #鸡腿儿：是否需要img？ Ollie: 不需要，改成图片文件名
-        add_mp = MpsData(mp, user, '12_Mozart.jpg') # 添加 莫扎特图片
+        add_mp = MpsData(mp, user, '12 Mozart.jpg') # 添加 莫扎特图片
         db.session.add(add_mp)
         db.session.commit()
 
-    def search_img(mp, user):   #鸡腿儿：似乎已经不需要此函数
+    def search_img(mp, user):   #鸡腿儿：此函数用来返回图片。
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         return data.img
 
-    def change_img(mp, user, img):#此处 img 为更改后的图片文件名
+    def change_img(mp, user, img):#此处 img 为更改后的图片文件名   #鸡腿儿：此函数目前只是摆摆样子，证明我们有此功能：）
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         del_file = data.img
         data.img = img
