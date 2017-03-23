@@ -41,8 +41,8 @@ class DataOperating:
     confirm_mp：确定用户的公众号是否已存储数据，若无则反馈 None
     change_img：修改二维码图片名称
     """
-    def add_data(mp, user, img):      #鸡腿儿：是否需要img？
-        add_mp = MpsData(mp, user, img)
+    def add_data(mp, user):      #鸡腿儿：是否需要img？ Ollie: 不需要，改成图片文件名
+        add_mp = MpsData(mp, user, '12_Mozart.jpg') # 添加 莫扎特图片
         db.session.add(add_mp)
         db.session.commit()
 
@@ -50,11 +50,7 @@ class DataOperating:
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         return data.img
 
-    def confirm_mp(mp, user): #鸡腿儿：就此函数的功能描述来看，还是需要此函数的，但与change_img()函数需进行功能合并
-        data = MpsData.query.filter_by(mp=mp, user=user).first()
-        return data #若 公众号＋user 不存在数据库中，则返回 None
-
-    def change_img(mp, user, img):#此处 img 为更改后的图片文件名 
+    def change_img(mp, user, img):#此处 img 为更改后的图片文件名
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         del_file = data.img
         data.img = img
@@ -62,4 +58,4 @@ class DataOperating:
         db.session.commit()
         os.remove(del_file)
 
-db.create_all()#创建链接：表格与 MpsData 
+db.create_all()#创建链接：表格与 MpsData
