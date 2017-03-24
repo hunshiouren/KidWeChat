@@ -50,6 +50,10 @@ class DataOperating:
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         return data.img
 
+    def confirm_mp(mp, user):
+        data = MpsData.query.filter_by(mp=mp, user=user).first()
+        return data #若 公众号＋user 不存在数据库中，则返回 None
+
     def change_img(mp, user, img):#此处 img 为更改后的图片文件名   #鸡腿儿：此函数目前只是摆摆样子，证明我们有此功能：）
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         del_file = data.img
