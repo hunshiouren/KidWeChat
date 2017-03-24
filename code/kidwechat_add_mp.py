@@ -46,13 +46,14 @@ def friend_send_mp(msg):
 def friend_query_mp(msg):
     request_head = msg.text[:2]
     request_body = msg.text[2:]
-    if request_head == '查找' and request_body:
+    try:
+        #request_head == '查找' and request_body:
         #查找数据库，如果已添加此公众号，则返回图片(默认返回莫扎特，手动添加二维码后返回二维码）)
 
         image = DataOperating.search_img(request_body, msg.chat.name)
         msg.sender.send_image(image)
-    else:
-        tuling.do_reply(msg)
+    except:
+        msg.reply('输入“查找xx”，查找公众号并返回二维码')
 
 #群聊，调戏机器人
 #@bot.register([Group],TEXT)

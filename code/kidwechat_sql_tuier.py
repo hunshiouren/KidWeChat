@@ -16,18 +16,18 @@ class MpsData(db.Model):
     创建表格，如表格已创建则读取表格为 MpsData
     第一列 mp：公众号名称
     第二列 user：添加发送信息的用户（写入 str(msg.chat.name），以防不同用户间产生冲突
-    第三列 img：照片文件名
+    第三列 qr_code：二维码图片文件名（修改，因为和其它文件变量名重复）
     """
     __tablename__ = 'weather_data'
     id = db.Column(db.Integer, primary_key = True)
     mp = db.Column(db.String, index=True)
     user = db.Column(db.String)
-    img = db.Column(db.String)
+    qr_code = db.Column(db.String)
 
-    def __init__(self, mp, user, img):
+    def __init__(self, mp, user, qr_code):
         self.mp = mp
         self.user = user
-        self.img = img
+        self.qr_code = qr_code
 
     def __repr__(self):
         return '<MpsData %r>' % self.mp
@@ -48,18 +48,18 @@ class DataOperating:
 
     def search_img(mp, user):   #鸡腿儿：此函数用来返回图片。
         data = MpsData.query.filter_by(mp=mp, user=user).first()
-        return data.img
+        return data.qr_code
 
     def confirm_mp(mp, user):
         data = MpsData.query.filter_by(mp=mp, user=user).first()
         return data #若 公众号＋user 不存在数据库中，则返回 None
 
-    def change_img(mp, user, img):#此处 img 为更改后的图片文件名   #鸡腿儿：此函数目前只是摆摆样子，证明我们有此功能：）
+    def change_img(mp, user, qr_code):#此处 img 为更改后的图片文件名   #鸡腿儿：此函数目前只是摆摆样子，证明我们有此功能：）
         data = MpsData.query.filter_by(mp=mp, user=user).first()
-        del_file = data.img
-        data.img = img
+        #del_file = data.qr_code
+        data.qr_code = qr_code
         db.session.add(data)
         db.session.commit()
-        os.remove(del_file)
+        #os.remove(del_file)
 
 db.create_all()#创建链接：表格与 MpsData
