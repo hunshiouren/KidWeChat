@@ -1,4 +1,5 @@
-![小头像](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%B0%8F%E5%A4%B4%E5%83%8F.png)  # KidWeChat Assistant 儿童微信助手 # 
+![小头像](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%B0%8F%E5%A4%B4%E5%83%8F.png)   
+# KidWeChat Assistant 儿童微信助手 #  
 
 基于Python，帮助家长管理儿童微信好友及公众号并可以和儿童自主交互的微信机器人
 
@@ -16,7 +17,7 @@
 	- 可查找父母筛选过的好友及公众号；  
 	- 并且儿童还可与微信助手自主聊天。
 
-![功能展示0](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA0.png)  ![功能展示1](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA1.png)
+   ![功能展示0](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA0.png)  ![功能展示1](https://github.com/hunshiouren/KidWeChat/blob/master/resources/%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA1.png)
 
 **轻松运行:**  
 
