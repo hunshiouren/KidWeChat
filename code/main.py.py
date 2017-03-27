@@ -6,6 +6,7 @@ from kidwechat_add_mp import friend_send_mp
 
 
 bot = Bot(cache_path=True)
+KEY = '042c8822f369426aa4ff5396880c84ad'
 
 @bot.register(msg_types='Text')
 def reply(msg):
