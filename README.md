@@ -59,3 +59,12 @@ Daocloud服务器(可选)
   v1.0(2017/03/26)  
 
    - 初始上线
+ 
+
+
+**项目资料** 
+ 
+- itchat 资料: [link](https://github.com/hunshiouren/KidWeChat/issues/5)
+- wxpy 资料：[link](https://github.com/hunshiouren/Py103/blob/master/Chap9/note/wxpy.ipynb)
+- 思路整理：[讨论](https://github.com/hunshiouren/KidWeChat/issues/3) & [教练建议](https://github.com/hunshiouren/KidWeChat/issues/6)
+   
